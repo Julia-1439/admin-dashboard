@@ -16,6 +16,7 @@ html {
   --sidebar-pad-size: 15px;
   --main-content-gap-size: 15px;
   --main-content-pad-size: 15px;
+  --project-card-footer-height: 28px;
 }
 
 a:any-link {
@@ -30,12 +31,13 @@ body {
   grid-template-rows: 1fr 4fr;
 }
 
+/* SIDEBAR ================================================================== */
 .sidebar {
   grid-row: 1 / 3;
   grid-column: 1;
 
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: repeat(3, auto);
   gap: 50px;
 
   position: fixed;
@@ -44,9 +46,10 @@ body {
 }
 
 .sidebar a {
-  display: flex;
-  align-items: center;  
+  display: grid;
+  grid-template-columns: 30px 1fr;
   gap: 10px;
+  align-items: center; 
 
   height: 100%;
 }
@@ -59,18 +62,22 @@ body {
   height: var(--page-first-row-height);
 }
 
+.sidebar-header a {
+  grid-template-columns: 45px 1fr;
+  gap: 15px;
+}
+
 .sidebar-navigations li {
   height: 40px;
   padding-left: 6px;
   list-style-type: none;
 }
 
+/* HEADER =================================================================== */
+
 .header { 
   grid-row: 1;
   grid-column: 2;
-
-  display: grid;
-  grid-template-rows: 2fr 3fr;
 }
 
 .header-first-row {
@@ -82,6 +89,8 @@ body {
   display: flex;
   justify-content: space-between
 }
+
+/* MAIN CONTENT ============================================================= */
 
 .main-content {
   grid-row: 2; 
@@ -113,20 +122,18 @@ body {
 }
 
 .project-card {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 1fr var(--project-card-footer-height);
 
   padding: var(--main-content-pad-size);
 }
 
-.project-card-content {
-  flex: auto;
-}
-
 .project-card-footer {
-  max-height: 28px;
-  display: flex;
-  justify-content: flex-end;
+  justify-self: end;
+
+  display: grid;
+  grid-template-rows: var(--project-card-footer-height);
+  grid-template-columns: repeat(3, var(--project-card-footer-height));
   gap: var(--main-content-gap-size);
 }
 
@@ -140,9 +147,6 @@ body {
 
 .announcements {
   grid-area: announcements;
-
-  display: flex;
-  flex-direction: column;
   padding: var(--main-content-pad-size);
 } 
 
@@ -153,7 +157,9 @@ body {
 .trending {
   grid-area: trending;
 
-  display: flex;
+  /* Decide to use flex to respect the potentially dynamic amount of content 
+  in Trending */
+  display: flex; 
   flex-direction: column;
   gap: var(--main-content-gap-size);
   padding: var(--main-content-gap-size);
@@ -190,12 +196,11 @@ div {
 
 .header div { 
   border-color: green;
-  min-height: 20px;
 }
 
 .header-first-row div,
 .header-second-row div {
-  width: 200px;
+  /* width: 200px; */
 }
 
 .main-content > div {
