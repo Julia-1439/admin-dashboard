@@ -24,11 +24,14 @@ a:any-link {
   text-decoration: none;
 }
 
-/* Get the grid layout going ================================================ */
+/* Grid layout for the page ================================================= */
+html {
+  height: 100vh;
+}
 body {
   display: grid;
   grid-template-columns: var(--sidebar-width) 5fr;
-  grid-template-rows: 1fr 4fr;
+  grid-template-rows: min-content 1fr;
 }
 
 /* SIDEBAR ================================================================== */
@@ -137,7 +140,7 @@ input[type="search"] {
 .header-second-row {
   height: calc(1.25 * var(--page-first-row-height));
   grid-template-rows: calc(1.25 * var(--page-first-row-height));
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   align-items: center;
 }
 
@@ -146,6 +149,7 @@ input[type="search"] {
   grid-template-columns: 60px 1fr;
   align-items: inherit;
   gap: 15px;
+  height: 100%;
 }
 
 .greeting::first-line {
@@ -157,7 +161,19 @@ input[type="search"] {
   vertical-align: middle;
 }
 
+.header-widgets-4 {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: inherit;
+  justify-items: center;
+}
 
+.header-widgets-4 button {
+  height: 36px;
+  width: 90px;
+  border-radius: 18px;
+}
 
 /* MAIN CONTENT ============================================================= */
 
@@ -245,46 +261,16 @@ input[type="search"] {
 }
 
 /* For testing ============================================================== */
-html { 
-  height: 100%;  
-}
 
-body {
-  min-height: 100%;
-}
-
-div {
+body > div {
   border: 1px solid black;
 }
 
-.sidebar div,
-.sidebar ul,
-.sidebar li {
-  border-color: red;
-  min-height: 20px;
-}
-
-.header div { 
-  border-color: green;
-}
-
-.header-first-row div,
-.header-second-row div {
-  /* width: 200px; */
-}
-
-.main-content > div {
-  border-color: blue;
+.announcements,
+.trending {
+  border: 1px solid blue;
 }
 
 .project-card { 
-  border-color: orange;
-}
-
-.project-card > div {
-  border: none;
-}
-
-.main-content > div[class$="header"] {
-  border: none;
+  border: 1px solid orange;
 }
