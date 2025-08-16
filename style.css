@@ -398,18 +398,3 @@ input[type="search"]:focus {
   height: 75%;
   border-radius: 50%;
 }
-
-/* For testing ============================================================== */
-
-body > div {
-  /* border: 1px solid black; */
-}
-
-.announcements,
-.trending {
-  /* border: 1px solid blue; */
-}
-
-.project-card { 
-  /* border: 1px solid orange; */
-}
