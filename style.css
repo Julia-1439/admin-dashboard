@@ -22,12 +22,13 @@ a:any-link {
 html {
   height: 100vh;
   
-  --palette-blue: hsl(201, 79%, 47%);
-  --palette-dark-blue: hsl(201, 79%, 39%);
-  --palette-yellow: #F0B429;
+  --palette-dominant: hsl(23, 41%, 33%);
+  --palette-dominant-dark: hsl(22, 61%, 31%);
+  --palette-accent: #939393;
   --palette-dark-gray: #636363;
   --palette-light-gray: #E2E8F0;
   --palette-white: #FFFFFF;
+  --palette-transparent-white: rgba(255, 255, 255, 0.6);
 
   --first-row-height: 60px;
   --sidebar-width: 250px;
@@ -62,9 +63,9 @@ body {
   width: var(--sidebar-width);
   padding: var(--sidebar-pad-size);
 
-  background-color: var(--palette-blue);
-  color: var(--palette-white);
   font-weight: bold;
+  color: var(--palette-white);
+  background-color: var(--palette-dominant);
 }
 
 .sidebar a {
@@ -78,7 +79,7 @@ body {
 }
 
 .sidebar img {
-  height: 75%;
+  height: 50%;
 }
 
 .sidebar-header {
@@ -87,7 +88,7 @@ body {
 
 .sidebar-header a {
   grid-template-columns: 45px 1fr;
-  gap: 15px;
+  gap: 10px;
 }
 
 .sidebar-navigations li {
@@ -206,14 +207,14 @@ input[type="search"]:focus {
   height: 36px;
   width: 90px;
   border-radius: 18px;
-  background-color: var(--palette-blue);
+  background-color: var(--palette-dominant);
   color: var(--palette-white);
   box-shadow: 3px 3px 6px var(--palette-light-gray);
   font-weight: inherit;
 }
 
 .header-widgets-4 button:hover {
-  background-color: var(--palette-dark-blue);
+  background-color: var(--palette-dominant-dark);
 }
 
 /* MAIN CONTENT ============================================================= */
@@ -233,7 +234,11 @@ input[type="search"]:focus {
   gap: var(--main-content-gap-size);
   padding: var(--main-content-pad-size);
 
-  background-color: var(--palette-light-gray);
+  /* background-color: var(--palette-light-gray); */
+  background: url(assets/constitution.jpg);
+  background-clip: padding-box; /* No visual effect unless a border is present */
+  background-blend-mode: lighten;
+  background-color: var(--palette-transparent-white);
 }
 
 .project-card, 
@@ -263,8 +268,8 @@ input[type="search"]:focus {
   padding: var(--main-content-pad-size);
   /* TODO: set a height on these - to see why, zoom out */
 
-  border-left: calc(var(--main-content-pad-size) / 2) solid var(--palette-yellow);
-  /* box-shadow: inset var(--main-content-pad-size) 0px 0px 0px var(--palette-yellow); */
+  border-left: calc(var(--main-content-pad-size) / 2) solid var(--palette-accent);
+  /* box-shadow: inset var(--main-content-pad-size) 0px 0px 0px var(--palette-accent); */
 }
 
 .project-card-footer {
@@ -277,7 +282,8 @@ input[type="search"]:focus {
 }
 
 .project-card-footer > img {
-  height: 100%
+  height: 75%;
+  align-self: end;
 }
 
 .announcements-header {
@@ -306,10 +312,13 @@ input[type="search"]:focus {
 
 .trending-item {
   display: grid;
+  grid-template-rows: 60px;
   grid-template-columns: 45px 1fr;
+  gap: 15px;
 }
 
 .trending-item > img {
+  height: 75%;
   border-radius: 50%;
 }
 
