@@ -18,6 +18,11 @@ a:any-link {
   text-decoration: none;
 }
 
+p {
+  line-height: 1.5; /* (a) */
+  /* (a) Accessibility guideline per MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/line-height */
+}
+
 /* Main styling starts here ================================================= */
 html {
   
