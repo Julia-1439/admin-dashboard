@@ -315,8 +315,17 @@ input[type="search"]:focus {
   font-size: 0.9rem;
   padding: var(--main-content-pad-size);
   border-left: calc(var(--main-content-pad-size) / 2) solid var(--palette-accent);
-  /* box-shadow: inset var(--main-content-pad-size) 0px 0px 0px var(--palette-accent); */
+  position: relative;
 }
+
+/* .project-card::before {
+  content: "hi";
+  position: absolute;
+  display: inline-block;
+  height: 100%;
+  width: calc(var(--main-content-pad-size) / 2);
+  background-color: var(--palette-accent);
+} */
 
 .project-card h3 {
   font-size: 1rem; /* Default is 1.17em */
