@@ -344,10 +344,8 @@ input[type="search"]:focus {
   grid-area: announcements;
   padding: var(--main-content-pad-size);
 
-  min-height: 0;
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-
+  grid-template-rows: repeat(3, 1fr);
   font-size: 0.8rem;
 } 
 
@@ -356,10 +354,13 @@ input[type="search"]:focus {
   margin-bottom: var(--h3-margin-bottom);
 }
 
-.announcement:nth-child(n+2) {
+.announcement {
   border-top: 1px solid var(--palette-accent);
   padding-top: 10px;
-  margin-top: 10px;
+}
+
+.announcement:first-child {
+  border-color: transparent;
 }
 
 .trending-header {
