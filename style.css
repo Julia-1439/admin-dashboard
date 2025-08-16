@@ -20,7 +20,6 @@ a:any-link {
 
 /* Main styling starts here ================================================= */
 html {
-  height: 100vh;
   
   --palette-dominant: hsl(23, 41%, 33%);
   --palette-dominant-dark: hsl(22, 61%, 31%);
@@ -136,6 +135,7 @@ input[type="search"] {
   width: 400px;
   height: 40px;
   padding: 0 20px;
+  font-family: inherit;
   font-size: 1.25rem;
   background-color: var(--palette-light-gray);
   border-radius: 20px;
@@ -224,7 +224,7 @@ input[type="search"]:focus {
   grid-area: main-content;
 
   display: grid;
-  grid-template-rows: 28px 1fr 28px 1fr; 
+  grid-template-rows: repeat(2, 28px 1fr); 
   grid-template-columns: 4fr 1fr;
   grid-template-areas: 
     "projects-header  announcements-header" 
@@ -234,11 +234,10 @@ input[type="search"]:focus {
   gap: var(--main-content-gap-size);
   padding: var(--main-content-pad-size);
 
-  /* background-color: var(--palette-light-gray); */
   background: url(assets/constitution.jpg);
-  background-clip: padding-box; /* No visual effect unless a border is present */
-  background-blend-mode: lighten;
   background-color: var(--palette-transparent-white);
+  background-blend-mode: lighten;
+  background-clip: padding-box; /* No visual effect unless a border is present */
 }
 
 .project-card, 
@@ -266,7 +265,6 @@ input[type="search"]:focus {
   grid-template-rows: 1fr var(--project-card-footer-height);
 
   padding: var(--main-content-pad-size);
-  /* TODO: set a height on these - to see why, zoom out */
 
   border-left: calc(var(--main-content-pad-size) / 2) solid var(--palette-accent);
   /* box-shadow: inset var(--main-content-pad-size) 0px 0px 0px var(--palette-accent); */
@@ -293,7 +291,17 @@ input[type="search"]:focus {
 .announcements {
   grid-area: announcements;
   padding: var(--main-content-pad-size);
+
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
 } 
+
+.announcement:nth-child(n+2) {
+  border-top: 1px solid var(--palette-accent);
+  padding-top: 10px;
+  margin-top: 10px;
+}
 
 .trending-header {
   grid-area: trending-header;
