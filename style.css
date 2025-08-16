@@ -36,6 +36,7 @@ html {
   --main-content-pad-size: 15px;
   --project-card-footer-height: 28px;
   --content-card-border-radius: 16px;
+  --h3-margin-bottom: 4px;
 }
 
 body {
@@ -86,6 +87,10 @@ img {
 
 .sidebar-header {
   height: var(--first-row-height);
+}
+
+.sidebar-header h1 {
+  font-size: 1.5rem; /* Default is 2.0em */
 }
 
 .sidebar-header a {
@@ -199,6 +204,10 @@ input[type="search"]:focus {
   font-size: 0.8rem;
 }
 
+.greeting {
+  font-size: 1.25rem;
+}
+
 .header-widgets-3 .pfp-icon {
   height: 60px;
   vertical-align: middle;
@@ -249,6 +258,21 @@ input[type="search"]:focus {
   background-color: var(--palette-transparent-white);
   background-blend-mode: lighten;
   background-clip: padding-box; /* No visual effect unless a border is present */
+
+  color: var(--palette-dark-gray);
+}
+
+.main-content h1, 
+.main-content h2, 
+.main-content h3, 
+.main-content h4, 
+.main-content h5, 
+.main-content h6 {
+  color: initial;
+} 
+
+.main-content h2 {
+  font-size: 1.25rem; /* Default is 1.5em */
 }
 
 .project-card, 
@@ -275,10 +299,15 @@ input[type="search"]:focus {
   display: grid;
   grid-template-rows: 1fr var(--project-card-footer-height);
 
+  font-size: 0.9rem;
   padding: var(--main-content-pad-size);
-
   border-left: calc(var(--main-content-pad-size) / 2) solid var(--palette-accent);
   /* box-shadow: inset var(--main-content-pad-size) 0px 0px 0px var(--palette-accent); */
+}
+
+.project-card h3 {
+  font-size: 1rem; /* Default is 1.17em */
+  margin-bottom: calc(2 * var(--h3-margin-bottom));
 }
 
 .project-card-footer {
@@ -306,7 +335,14 @@ input[type="search"]:focus {
   min-height: 0;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
+
+  font-size: 0.8rem;
 } 
+
+.announcements h3 {
+  font-size: 0.9rem;
+  margin-bottom: var(--h3-margin-bottom);
+}
 
 .announcement:nth-child(n+2) {
   border-top: 1px solid var(--palette-accent);
@@ -327,6 +363,14 @@ input[type="search"]:focus {
   flex-direction: column;
   gap: var(--main-content-gap-size);
   padding: var(--main-content-gap-size);
+
+  font-size: 0.9rem;
+}
+
+.trending h3 {
+  font-size: inherit;
+  font-weight: initial;
+  margin-bottom: var(--h3-margin-bottom);
 }
 
 .trending-item {
