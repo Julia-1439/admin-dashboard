@@ -125,12 +125,20 @@ body {
   align-items: center;
 }
 
-label[for="header-search"] > img {
+label[for="header-search"] .search-btn {
   vertical-align: middle;
   height: 30px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+}
+
+label[for="header-search"] img {
+  height: 100%;
 }
 
 input[type="search"] {
+  color: var(--palette-dark-gray);
   margin-left: 25px;
   width: 400px;
   height: 40px;
