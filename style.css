@@ -11,12 +11,6 @@
 html {
   font-family: var(--font-stack);
   --font-stack: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  --page-first-row-height: 60px;
-  --sidebar-width: 250px;
-  --sidebar-pad-size: 15px;
-  --main-content-gap-size: 15px;
-  --main-content-pad-size: 15px;
-  --project-card-footer-height: 28px;
 }
 
 a:any-link {
@@ -24,9 +18,22 @@ a:any-link {
   text-decoration: none;
 }
 
-/* Grid layout for the page ================================================= */
+/* Main styling starts here ================================================= */
 html {
   height: 100vh;
+  
+  --pallete-blue: #1992D4;
+  --pallete-yellow: #F0B429;
+  --pallete-dark-gray: #636363;
+  --pallete-light-gray: #E2E8F0;
+  --pallete-white: #FFFFFF;
+
+  --first-row-height: 60px;
+  --sidebar-width: 250px;
+  --sidebar-pad-size: 15px;
+  --main-content-gap-size: 15px;
+  --main-content-pad-size: 15px;
+  --project-card-footer-height: 28px;
 }
 body {
   display: grid;
@@ -65,7 +72,7 @@ body {
 }
 
 .sidebar-header {
-  height: var(--page-first-row-height);
+  height: var(--first-row-height);
 }
 
 .sidebar-header a {
@@ -93,8 +100,8 @@ body {
 }
 
 .header-first-row {
-  height: var(--page-first-row-height);
-  grid-template-rows: var(--page-first-row-height);
+  height: var(--first-row-height);
+  grid-template-rows: var(--first-row-height);
   grid-template-columns: 3fr 2fr;
 }
 
@@ -139,8 +146,8 @@ input[type="search"] {
 }
 
 .header-second-row {
-  height: calc(1.25 * var(--page-first-row-height));
-  grid-template-rows: calc(1.25 * var(--page-first-row-height));
+  height: calc(1.25 * var(--first-row-height));
+  grid-template-rows: calc(1.25 * var(--first-row-height));
   grid-template-columns: 2fr 1fr;
   align-items: center;
 }
