@@ -28,11 +28,6 @@
   padding: 0;
 }
 
-html {
-  font-family: "X Typewriter", var(--fallback-font-stack);
-  --fallback-font-stack: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
 a:any-link {
   color: initial;
   text-decoration: none;
@@ -45,8 +40,11 @@ p {
 
 /* Main styling starts here ================================================= */
 html {
+  font-family: "X Typewriter", var(--fallback-font-stack);
+  --fallback-font-stack: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 14px;
   
+  /* Color palette */
   --palette-dominant: hsl(23, 41%, 33%);
   --palette-dominant-dark: hsl(22, 61%, 31%);
   --palette-accent: #939393;
@@ -55,16 +53,14 @@ html {
   --palette-white: #FFFFFF;
   --palette-transparent-white: rgba(255, 255, 255, 0.6);
 
-  --first-row-height: 60px;
-  --second-row-height: calc(1.25 * var(--first-row-height));
+  /* Element dimensions */
+  --primary-pad-size: 15px;
   --sidebar-width: 225px;
-  --sidebar-pad-size: 15px;
-  --header-btn-width: 90px;
-  --main-content-gap-size: 15px;
-  --main-content-pad-size: 15px;
-  --project-card-footer-height: 28px;
+  --header-1st-row-height: 60px;
+  --header-2nd-row-height: calc(1.25 * var(--header-1st-row-height));
+  --main-content-gap-size: var(--primary-pad-size);
   --content-card-border-radius: 8px;
-  --h3-margin-bottom: 4px;
+  --content-card-h3-margin-bottom: 4px;
 }
 
 body {
@@ -92,7 +88,7 @@ img {
   position: fixed;
   height: 100vh;
   width: var(--sidebar-width);
-  padding: var(--sidebar-pad-size);
+  padding: var(--primary-pad-size);
 
   font-weight: bold;
   color: var(--palette-white);
@@ -114,7 +110,7 @@ img {
 }
 
 .sidebar-header {
-  height: var(--first-row-height);
+  height: var(--header-1st-row-height);
 }
 
 .sidebar-header h1 {
@@ -137,7 +133,7 @@ img {
 .header { 
   z-index: 2;
   grid-area: header;
-  padding: 15px;
+  padding: var(--primary-pad-size);
 
   background-color: var(--palette-white);
   box-shadow: 0px 2px 11px -3px var(--palette-dark-gray);
@@ -151,8 +147,8 @@ img {
 }
 
 .header-first-row {
-  height: var(--first-row-height);
-  grid-template-rows: var(--first-row-height);
+  height: var(--header-1st-row-height);
+  grid-template-rows: var(--header-1st-row-height);
   grid-template-columns: 3fr 2fr;
   align-items: center;
 }
@@ -217,7 +213,7 @@ input[type="search"]:focus {
 }
 
 .header-second-row {
-  height: var(--second-row-height);
+  height: var(--header-2nd-row-height);
   grid-template-rows: 1fr;
   grid-template-columns: 2fr 1fr;
   align-items: center;
@@ -259,7 +255,7 @@ input[type="search"]:focus {
   cursor: pointer;
   border: none;
   height: 36px;
-  width: var(--header-btn-width);
+  width: 90px;
   border-radius: 18px;
   background-color: var(--palette-dominant);
   color: var(--palette-white);
@@ -279,7 +275,7 @@ input[type="search"]:focus {
   grid-area: main-content;
 
   max-height: calc(
-    100vh - var(--first-row-height) - var(--second-row-height) - 15px * 2
+    100vh - var(--header-1st-row-height) - var(--header-2nd-row-height) - 15px * 2
   );
   display: grid;
   grid-template-rows: repeat(2, 1.25rem 1fr); 
@@ -290,7 +286,7 @@ input[type="search"]:focus {
     "project-cards    trending-header" 
     "project-cards    trending";
   gap: var(--main-content-gap-size);
-  padding: var(--main-content-pad-size);
+  padding: var(--primary-pad-size);
 
   background: url(assets/constitution.jpg);
   background-color: var(--palette-transparent-white);
@@ -336,10 +332,10 @@ input[type="search"]:focus {
 
 .project-card {
   display: grid;
-  grid-template-rows: 1fr var(--project-card-footer-height);
+  grid-template-rows: 1fr 28px;
 
   font-size: 0.9rem;
-  padding: var(--main-content-pad-size);
+  padding: var(--primary-pad-size);
   border-left: var(--content-card-border-radius) solid var(--palette-accent);
   position: relative;
 
@@ -348,15 +344,15 @@ input[type="search"]:focus {
 
 .project-card h3 {
   font-size: 1rem; /* Default is 1.17em */
-  margin-bottom: calc(2 * var(--h3-margin-bottom));
+  margin-bottom: calc(2 * var(--content-card-h3-margin-bottom));
 }
 
 .project-card-footer {
   justify-self: end;
 
   display: grid;
-  grid-template-rows: var(--project-card-footer-height);
-  grid-template-columns: repeat(3, var(--project-card-footer-height));
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--main-content-gap-size);
 }
 
@@ -371,7 +367,7 @@ input[type="search"]:focus {
 
 .announcements {
   grid-area: announcements;
-  padding: var(--main-content-pad-size);
+  padding: var(--primary-pad-size);
 
   display: grid;
   grid-template-rows: repeat(3, 1fr);
@@ -382,7 +378,7 @@ input[type="search"]:focus {
 
 .announcements h3 {
   font-size: 0.9rem;
-  margin-bottom: var(--h3-margin-bottom);
+  margin-bottom: var(--content-card-h3-margin-bottom);
 }
 
 .announcement {
@@ -411,7 +407,7 @@ input[type="search"]:focus {
   in Trending */
   display: flex; 
   flex-direction: column;
-  padding: var(--main-content-gap-size);
+  padding: var(--primary-pad-size);
 
   font-size: 0.9rem;
   overflow: auto;
@@ -420,7 +416,7 @@ input[type="search"]:focus {
 .trending h3 {
   font-size: inherit;
   font-weight: initial;
-  margin-bottom: var(--h3-margin-bottom);
+  margin-bottom: var(--content-card-h3-margin-bottom);
 }
 
 .trending-item {
