@@ -61,7 +61,7 @@ html {
   --main-content-gap-size: 15px;
   --main-content-pad-size: 15px;
   --project-card-footer-height: 28px;
-  --content-card-border-radius: 16px;
+  --content-card-border-radius: 8px;
   --h3-margin-bottom: 4px;
 }
 
@@ -335,7 +335,7 @@ input[type="search"]:focus {
 
   font-size: 0.9rem;
   padding: var(--main-content-pad-size);
-  border-left: calc(var(--main-content-pad-size) / 2) solid var(--palette-accent);
+  border-left: var(--content-card-border-radius) solid var(--palette-accent);
   position: relative;
 }
 
