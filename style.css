@@ -378,6 +378,8 @@ input[type="search"]:focus {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   font-size: 0.8rem;
+
+  overflow: auto;
 } 
 
 .announcements h3 {
@@ -387,12 +389,18 @@ input[type="search"]:focus {
 
 .announcement {
   border-top: 1px solid var(--palette-accent);
-  padding-top: 10px;
+  padding: 10px 0; 
 }
 
 .announcement:first-child {
-  border-color: transparent;
+  border: none;
+  padding-top: 0;
 }
+
+.announcement:last-child {
+  padding-bottom: 0;
+}
+
 
 .trending-header {
   grid-area: trending-header;
