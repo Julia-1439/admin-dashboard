@@ -53,7 +53,7 @@ html {
   --palette-white: #FFFFFF;
   --palette-transparent-white: rgba(255, 255, 255, 0.6);
 
-  /* Element dimensions */
+  /* Element sizes */
   --primary-pad-size: 15px; /* Used by sidebar, header, & main content sections */
   --sidebar-width: 225px;
   --sidebar-gap-size: 20px;
@@ -62,9 +62,12 @@ html {
   --header-total-height: 
     calc(var(--header-1st-row-height) + var(--header-2nd-row-height) + 
       2 * var(--primary-pad-size));
+  --pfp-side-length: 45px;
+  --pfp-side-length-large: 60px;
   --main-content-gap-size: var(--primary-pad-size);
   --content-card-border-radius: 8px;
   --content-card-h3-margin-bottom: 4px;
+  --main-section-h2-size: 1.25rem; /* Default is 1.5em */
 }
 
 body {
@@ -84,7 +87,7 @@ img {
 
 /* SIDEBAR ================================================================== */
 .sidebar {
-  z-index: 3;
+  z-index: 3; /* The highest in the page */
   grid-area: sidebar;
   position: fixed; /* Stay in place if a scroll was added to the webpage */
 
@@ -209,7 +212,7 @@ input[type="search"]:focus {
 }
 
 .pfp-icon {
-  height: 40px;
+  height: var(--pfp-side-length);
   justify-self: center;
   border-radius: 50%;
 }
@@ -241,7 +244,7 @@ input[type="search"]:focus {
 }
 
 .header-widgets-3 .pfp-icon {
-  height: 60px;
+  height: var(--pfp-side-length-large); 
   vertical-align: middle;
 }
 
@@ -280,17 +283,15 @@ input[type="search"]:focus {
   z-index: 1;
   grid-area: main-content;
 
-  max-height: calc(
-    100vh - var(--header-total-height)
-  );
+  max-height: calc(100vh - var(--header-total-height)); /* Note (a) */
   display: grid;
-  grid-template-rows: repeat(2, 1.25rem 1fr); 
+  grid-template-rows: repeat(2, var(--main-section-h2-size) 1fr); 
   grid-template-columns: 4fr 1fr;
   grid-template-areas: 
-    "projects-header  announcements-header" 
-    "project-cards    announcements" 
-    "project-cards    trending-header" 
-    "project-cards    trending";
+    "projects-header            announcements-header" 
+    "project-cards-container    announcements" 
+    "project-cards-container    trending-header" 
+    "project-cards-container    trending";
   gap: var(--main-content-gap-size);
   padding: var(--primary-pad-size);
 
@@ -300,19 +301,22 @@ input[type="search"]:focus {
   background-clip: padding-box; /* No visual effect unless a border is present */
 
   color: var(--palette-dark-gray);
+
+  /* Note (a): This height ensures main section does not exceed 100vh, 
+  keeping the whole dashboard visible without scrolling */
 }
 
-.main-content h1, 
 .main-content h2, 
-.main-content h3, 
-.main-content h4, 
-.main-content h5, 
-.main-content h6 {
+.main-content h3 {
   color: initial;
 } 
 
 .main-content h2 {
-  font-size: 1.25rem; /* Default is 1.5em */
+  font-size: var(--main-section-h2-size);
+}
+
+.main-content h3 {
+  margin-bottom: var(--content-card-h3-margin-bottom);
 }
 
 .project-card, 
@@ -327,13 +331,16 @@ input[type="search"]:focus {
   grid-area: projects-header;
 }
 
-.project-cards {
-  grid-area: project-cards;
+.project-cards-container {
+  grid-area: project-cards-container;
 
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  grid-auto-rows: minmax(30%, 400px); 
+  grid-auto-rows: minmax(min-content, 200px); /* Note (a) */
   gap: var(--main-content-gap-size);
+
+  /* Note (a): The minimum ensures card content is always visible on different 
+  window sizes & zooms. */
 }
 
 .project-card {
@@ -342,10 +349,11 @@ input[type="search"]:focus {
 
   font-size: 0.9rem;
   padding: var(--primary-pad-size);
-  border-left: var(--content-card-border-radius) solid var(--palette-accent);
-  position: relative;
+  border-left: var(--content-card-border-radius) 
+    solid var(--palette-accent); /* Note (a) */
 
-  overflow: auto;
+  /* Note (a): A width of border-radius makes this border appear stragiht
+  despite the rounded corners of the card. Cool! */
 }
 
 .project-card h3 {
@@ -357,7 +365,6 @@ input[type="search"]:focus {
   justify-self: end;
 
   display: grid;
-  grid-template-rows: 1fr;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--main-content-gap-size);
 }
@@ -394,14 +401,13 @@ input[type="search"]:focus {
 }
 
 .announcement:first-child {
-  border: none;
-  padding-top: 0;
+  border: revert;
+  padding-top: revert;
 }
 
 .announcement:last-child {
-  padding-bottom: 0;
+  padding-bottom: revert;
 }
-
 
 .trending-header {
   grid-area: trending-header;
@@ -414,26 +420,20 @@ input[type="search"]:focus {
   in Trending */
   display: flex; 
   flex-direction: column;
+  gap: var(--main-content-gap-size);
   padding: var(--primary-pad-size);
 
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   overflow: auto;
 }
 
 .trending h3 {
   font-size: inherit;
   font-weight: initial;
-  margin-bottom: var(--content-card-h3-margin-bottom);
 }
 
 .trending-item {
   display: grid;
-  grid-template-rows: 60px;
-  grid-template-columns: 45px 1fr;
-  gap: 15px;
-}
-
-.trending-item > img {
-  height: 75%;
-  border-radius: 50%;
+  grid-template-columns: min-content 1fr;
+  gap: var(--main-content-gap-size);
 }
