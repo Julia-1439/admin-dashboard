@@ -54,8 +54,9 @@ html {
   --palette-transparent-white: rgba(255, 255, 255, 0.6);
 
   /* Element dimensions */
-  --primary-pad-size: 15px;
+  --primary-pad-size: 15px; /* Used by sidebar, header, & main content sections */
   --sidebar-width: 225px;
+  --sidebar-gap-size: 20px;
   --header-1st-row-height: 60px;
   --header-2nd-row-height: calc(1.25 * var(--header-1st-row-height));
   --main-content-gap-size: var(--primary-pad-size);
@@ -65,11 +66,13 @@ html {
 
 body {
   display: grid;
-  grid-template-columns: var(--sidebar-width) 1fr;
-  grid-template-rows: min-content 1fr;
+  grid-template-columns: var(--sidebar-width) 1fr; /* note (a) */
+  grid-template-rows: auto 1fr;
   grid-template-areas: 
     "sidebar header" 
-    "sidebar main-content"
+    "sidebar main-content";
+  /* note (a): specifying sidebar width is needed since sidebar is removed
+  from the document flow due to custom positioning.  */
 }
 
 img {
@@ -80,33 +83,21 @@ img {
 .sidebar {
   z-index: 3;
   grid-area: sidebar;
+  position: fixed; /* Stay in place if a scroll was added to the webpage */
 
-  display: grid;
-  grid-template-rows: repeat(3, min-content);
-  gap: 50px;
-
-  position: fixed;
   height: 100vh;
   width: var(--sidebar-width);
+  display: grid;
+  grid-template-rows: repeat(3, min-content); /* Note (a) */
+  gap: 50px;
   padding: var(--primary-pad-size);
 
   font-weight: bold;
   color: var(--palette-white);
   background-color: var(--palette-dominant);
-}
 
-.sidebar a {
-  display: grid;
-  grid-template-columns: 30px 1fr;
-  gap: 10px;
-  align-items: center; 
-  height: 100%;
-
-  color: inherit;
-}
-
-.sidebar img {
-  height: 50%;
+  /* Note (a) MDN: "by default, an auto sized track will take up any 
+  remaining space in the grid container", so we choose min-content */
 }
 
 .sidebar-header {
@@ -117,15 +108,24 @@ img {
   font-size: 1.5rem; /* Default is 2.0em */
 }
 
-.sidebar-header a {
-  grid-template-columns: 45px 1fr;
-  gap: 10px;
+.sidebar-navigations li {
+  height: 2.5rem;
+  margin-left: 6px;
+  list-style-type: none;
 }
 
-.sidebar-navigations li {
-  height: 40px;
-  padding-left: 6px;
-  list-style-type: none;
+.sidebar a {
+  height: 100%;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  align-items: center; 
+  gap: var(--sidebar-gap-size);
+
+  color: inherit;
+}
+
+.sidebar img {
+  height: 50%;
 }
 
 /* HEADER =================================================================== */
