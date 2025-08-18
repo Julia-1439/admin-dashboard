@@ -337,8 +337,8 @@ input[type="search"]:focus {
   grid-area: project-cards-container;
 
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  grid-auto-rows: minmax(min-content, 200px); /* Note */
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-auto-rows: minmax(min-content, 1fr); /* Note */
   gap: var(--main-content-gap-size);
 
   /* Note: The minimum ensures card content is always visible on different 
