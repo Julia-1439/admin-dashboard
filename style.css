@@ -196,7 +196,7 @@ input[type="search"] {
 
 input[type="search"]:focus {
   outline-offset: 8px;
-  outline-color: var(--palette-dark-gray);
+  outline: 2px solid var(--palette-dark-gray); 
 }
 
 .header-widgets-2 {
