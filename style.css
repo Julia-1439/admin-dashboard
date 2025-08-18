@@ -269,6 +269,7 @@ input[type="search"]:focus {
   box-shadow: 3px 3px 6px var(--palette-light-gray);
   font-family: inherit;
   font-weight: inherit;
+  font-size: inherit;
 }
 
 .header-widgets-4 button:hover {
