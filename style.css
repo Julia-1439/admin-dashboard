@@ -138,10 +138,10 @@ img {
 /* HEADER =================================================================== */
 
 .header { 
-  z-index: 2;
+  z-index: 2; /* Ensure box shadow appears over the main-content section */
   grid-area: header;
-  padding: var(--primary-pad-size);
 
+  padding: var(--primary-pad-size);
   background-color: var(--palette-white);
   box-shadow: 0px 2px 11px -3px var(--palette-dark-gray);
   font-weight: bold;
@@ -155,8 +155,7 @@ img {
 
 .header-first-row {
   height: var(--header-1st-row-height);
-  grid-template-rows: var(--header-1st-row-height);
-  grid-template-columns: 3fr 2fr;
+  grid-template-columns: 1.5fr 1fr;
   align-items: center;
 }
 
@@ -165,29 +164,29 @@ img {
   align-items: inherit;
 }
 
-label[for="header-search"] .search-btn {
+.search-btn {
   vertical-align: middle;
   height: 30px;
   border: none;
-  cursor: pointer;
   background: transparent;
 }
 
-label[for="header-search"] img {
+.search-btn img {
   height: 100%;
 }
 
 input[type="search"] {
-  color: var(--palette-dark-gray);
-  margin-left: 25px;
   width: 400px;
   height: 40px;
   padding: 0 20px;
+  margin-left: 25px; 
+  border: none;
+  border-radius: 20px;
+
+  color: var(--palette-dark-gray);
   font-family: inherit;
   font-size: 1.25rem;
   background-color: var(--palette-light-gray);
-  border-radius: 20px;
-  border: none
 }
 
 input[type="search"]:focus {
@@ -221,14 +220,13 @@ input[type="search"]:focus {
 
 .header-second-row {
   height: var(--header-2nd-row-height);
-  grid-template-rows: 1fr;
   grid-template-columns: 2fr 1fr;
   align-items: center;
 }
 
 .header-widgets-3 {
   display: grid;
-  grid-template-columns: 60px 1fr;
+  grid-template-columns: min-content 1fr;
   align-items: inherit;
   gap: 15px;
   height: 100%;
@@ -263,7 +261,7 @@ input[type="search"]:focus {
   border: none;
   height: 36px;
   width: 90px;
-  border-radius: 18px;
+  border-radius: calc(36px / 2);
   background-color: var(--palette-dominant);
   color: var(--palette-white);
   box-shadow: 3px 3px 6px var(--palette-light-gray);
